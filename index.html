@@ -97,7 +97,7 @@
 
 <div class="container">
     <h1>Python Code Library</h1>
-
+    <input type="search" placeholder="Search for the Program">
     <div class="code-title">Experiment 1a: Best of Two Test Average</div>
     <div class="code-block">
         <button class="copy-btn">Copy</button>
@@ -290,8 +290,70 @@ plt.show()
             
         </pre>
     </div>
-    <div class="code-title">Experiment 8: bokeh </div>
+    <div class="code-title">Experiment 6a:  Write a Python program to illustrate Linear Plotting using Matplotlib. </div>
     <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre>
+            overs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+            runs_scored = [0, 7, 12, 20, 39, 49, 61, 83, 86, 97, 113, 116, 123, 137, 145, 163, 172, 192, 198, 198, 203]
+            plt.plot(overs, runs_scored)
+            plt.xlabel('Overs')
+            plt.ylabel('Runs scored')
+            plt.title('Run scoring in a T20 Cricket Match')
+            plt.grid(True)
+            plt.show()
+ 
+        </pre>
+    </div>
+
+    <div class="code-title">Experiment 6b:  Write a Python program to illustrate liner plotting with line formatting using Matplotlib.</div>
+    <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre>
+            import matplotlib.pyplot as plt
+            overs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+            runs_scored = [0, 7, 12, 20, 39, 49, 61, 83, 86, 97, 113, 116, 123, 137, 145, 163, 172, 192, 198, 198, 203]
+            plt.plot(
+                overs, 
+                runs_scored, 
+                marker='X', 
+                linestyle='dashed', 
+                color='red', 
+                linewidth=2, 
+                markerfacecolor='blue', 
+                markersize=8
+            )
+            plt.xlabel('Overs', color='green')
+            plt.ylabel('Runs scored')
+            plt.title('Run scoring in a T20 Cricket Match')
+            plt.grid(True)
+            plt.show()
+        </pre>
+    </div>
+
+    <div class="code-title">Experiment 7:Write a Python program which explains uses of customizing seaborn plots with 
+        Aesthetic functions.</div>
+    <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre>
+            import numpy as np
+            import matplotlib.pyplot as plt
+            import seaborn as sns
+            sns.set()
+            sns.set_context("notebook", font_scale=1.5, rc={"lines.linewidth": 2.5})
+            def sinplot(n=10):
+                x = np.linspace(0, 14, 100)
+                for i in range(1, n + 1):
+                    plt.plot(x, np.sin(x + i * 0.5) * (n + 2 - i))
+            sinplot()
+            plt.title('Seaborn plots with Aesthetic Functions')
+            plt.show()
+        </pre>
+    </div>
+
+
+    <div class="code-title">Experiment 8: bokeh </div>
+        <div class="code-block">
         <button class="copy-btn">Copy</button>
         <pre>
             import numpy as np
@@ -313,10 +375,60 @@ plt.show()
             p2.square(x, 3*y, legend_label="3*sin(x)", fill_color=None, line_color="green")
             p2.line(x, 3*y, legend_label="3*sin(x)", line_color="green")
             p2.legend.title = 'Lines'
-            show(gridplot([p1, p2], ncols=2))
+            show(gridplot([p1, p2], ncols=2))  
+        </pre>
+    </div>
+    <div class="code-title">Experiment 9: Write a Python program to draw 3D Plots using Plotly Libraries </div>
+    <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre>
+            import plotly.graph_objects as go
+            import numpy as np
+            x = np.linspace(-5, 5, 100)
+            y = np.linspace(-5, 5, 100)
+            x, y = np.meshgrid(x, y)
+            z = np.sin(np.sqrt(x**2 + y**2))
+            fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+            fig.update_layout(
+                scene=dict(
+                    xaxis_title='X Axis',
+                    yaxis_title='Y Axis',
+                    zaxis_title='Z Axis'
+                ),
+                margin=dict(l=0, r=0, b=0, t=40),  # Set margins
+                title='3D Surface Plot of sin(sqrt(x^2 + y^2))'
+            )
+            fig.show()
+        </pre>
+    </div>
+    <div class="code-title">Experiment 10a:  Write a Python program to draw Time Series using Plotly Libraries.</div>
+    <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre>
+            import pandas as pd 
+            import plotly.express as px 
+            dollar_conv = pd.read_csv('CUR_DLR_INR.csv') 
+            fig = px.line(dollar_conv, x='DATE', y='RATE', title='Dollar vs Rupee') 
+            fig.show()
+        </pre>
+    </div>
+    <div class="code-title">Experiment 10b:Write a Python program for creating Maps using Plotly Libraries.</div>
+    <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre>
+            import plotly.express as px
+import pandas as pd
+data = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_with_codes.csv')
+fig = px.choropleth(
+    data,
+    locations='iso_alpha',
+    color='gdpPercap',
+    hover_name='country',
+    projection='natural earth',
+    title='GDP per Capita by Country'
+)
+fig.show()
 
-            
-            
         </pre>
     </div>
 </div>
@@ -338,4 +450,3 @@ plt.show()
 
 </body>
 </html>
-
