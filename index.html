@@ -1,3 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Code Library</title>
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            max-width: 800px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Python Code Library</h1>
+
+    <div>
+        <h3>Python Program 1a: Best of Two Test Average Marks Out of Three</h3>
+        <pre id="code1">m1 = int(input("Enter marks for test1 : "))  
+m2 = int(input("Enter marks for test2 : "))  
+m3 = int(input("Enter marks for test3 : "))  
+best_of_two = sorted([m1, m2, m3], reverse=True)[:2]  
+average_best_of_two = sum(best_of_two) / 2  
+print("Average of best two test marks out of three test’s marks is", average_best_of_two)</pre>
+        <button onclick="copyToClipboard('code1')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 1b: Palindrome Check and Digit Occurrences</h3>
+        <pre id="code2">from collections import Counter 
+value = input("Enter a value : ")  
+if value == value[::-1]:  
+    print("Palindrome") 
+else: 
+    print("Not Palindrome")  
+
+counted_dict = Counter(value) 
+for key in sorted(counted_dict.keys()):  
+    print(f'{key} appears {counted_dict[key]} times')</pre>
+        <button onclick="copyToClipboard('code2')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 2a: Fibonacci Function</h3>
+        <pre id="code3">def fn(n): 
+    if n <= 2: 
+        return n - 1 
+    else: 
+        return fn(n - 1) + fn(n - 2) 
+
+try: 
+    num = int(input("Enter a number : ")) 
+    if num > 0: 
+        print(f' fn({num}) = {fn(num)}') 
+    else: 
+        print("Input should be greater than 0") 
+except ValueError: 
+    print("Try with numeric value")</pre>
+        <button onclick="copyToClipboard('code3')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 2b: Binary to Decimal and Octal to Hexadecimal Conversion</h3>
+        <pre id="code4">def bin2Dec(val): 
+    return int(val, 2)
+
+def oct2Hex(val): 
+    return int(val, 8)
+
+try: 
+    num1 = input("Enter a binary number : ") 
+    print(bin2Dec(num1)) 
+except ValueError: 
+    print("Invalid literal in input with base 2")
+
+try: 
+    num2 = input("Enter an octal number : ") 
+    print(oct2Hex(num2)) 
+except ValueError: 
+    print("Invalid literal in input with base 8")</pre>
+        <button onclick="copyToClipboard('code4')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 3a: Count Words, Digits, Uppercase, and Lowercase</h3>
+        <pre id="code5">import string
+sentence = input("Enter a sentence: ")
+wordList = sentence.strip().split(" ")
+print(f'This sentence has {len(wordList)} words', end='\n\n')
+
+digit_count = 0
+uppercase_count = 0
+lowercase_count = 0
+
+for character in sentence:
+    if character in string.digits:
+        digit_count += 1
+    elif character in string.ascii_uppercase:
+        uppercase_count += 1
+    elif character in string.ascii_lowercase:
+        lowercase_count += 1
+
+print(f'This sentence has {digit_count} digits',
+      f'{uppercase_count} upper case letters',
+      f'{lowercase_count} lower case letters',
+      sep='\n')</pre>
+        <button onclick="copyToClipboard('code5')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 3b: String Similarity Check</h3>
+        <pre id="code6">from difflib import SequenceMatcher 
+str1 = input("Enter String 1 : ") 
+str2 = input("Enter String 2 : ") 
+sim = SequenceMatcher(None, str1, str2).ratio() 
+print("Similarity between strings \"" + str1 + "\" and \"" + str2 + "\" is : ", sim)</pre>
+        <button onclick="copyToClipboard('code6')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 4a: Bar Plot Using Matplotlib</h3>
+        <pre id="code7">import matplotlib.pyplot as plt 
+categories = ['0-10', '10-20', '20-30', '30-40', '40-50'] 
+values = [55, 48, 25, 68, 90] 
+plt.bar(categories, values, color='skyblue') 
+plt.xlabel('Overs') 
+plt.ylabel('Runs') 
+plt.title('Bar Plot Showing Runs scored in an ODI Match') 
+plt.show()</pre>
+        <button onclick="copyToClipboard('code7')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 4b: Scatter Plot Using Matplotlib</h3>
+        <pre id="code8">import matplotlib.pyplot as plt
+import numpy as np
+
+countries = ['Brazil', 'Russia', 'India', 'China', 'South Africa']
+population = [213993437, 145912025, 1393409038, 1444216107, 61608912]
+per_capita_income = [9600, 11600, 2300, 11000, 6500]
+
+circle_size = [pop / 1000000 for pop in population]
+
+colors = np.arange(len(countries))
+
+scatter = plt.scatter(population, per_capita_income, s=circle_size, c=colors, cmap='viridis',
+                       alpha=0.7, label='BRICS Nations')
+
+for i, country in enumerate(countries):
+    plt.annotate(country, (population[i], per_capita_income[i]),
+                 textcoords="offset points", xytext=(0, 5), ha='center')
+
+plt.colorbar(scatter, label='Index')
+plt.xlabel('Population')
+plt.ylabel('Per Capita Income (USD)')
+plt.title('Population vs Per Capita Income of BRICS Nations')
+
+plt.show()</pre>
+        <button onclick="copyToClipboard('code8')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 5a: Histogram Plot Using Matplotlib</h3>
+        <pre id="code9">import matplotlib.pyplot as plt 
+import numpy as np 
+np.random.seed(42) 
+student_scores = np.random.normal(loc=70, scale=15, size=100) 
+plt.hist(student_scores, bins=20, color='skyblue', edgecolor='black') 
+plt.xlabel('Student Scores') 
+plt.ylabel('Frequency') 
+plt.title('Distribution of Student Scores') 
+plt.show()</pre>
+        <button onclick="copyToClipboard('code9')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 5b: Pie Chart Using Matplotlib</h3>
+        <pre id="code10">import matplotlib.pyplot as plt 
+countries = ['Brazil', 'Germany', 'Italy', 'Argentina', 'Uruguay', 'France', 'England','Spain'] 
+wins = [5, 4, 4, 3, 2, 2, 1, 1] 
+colors = ['yellow', 'magenta', 'green', 'blue', 'lightblue', 'blue', 'red', 'cyan'] 
+plt.pie(wins, labels=countries, autopct='%1.1f%%', colors=colors, startangle=90, 
+        explode=[0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2], shadow=True) 
+plt.title('FIFA World Cup Wins by Country') 
+plt.axis('equal') 
+plt.show()</pre>
+        <button onclick="copyToClipboard('code10')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 6a: Line Plot Using Matplotlib</h3>
+        <pre id="code11">import matplotlib.pyplot as plt 
+import numpy as np 
+
+years = np.arange(2000, 2021) 
+gdp_growth = [4.1, 3.7, 4.2, 5.1, 6.3, 7.0, 7.6, 6.2, 6.1, 5.9, 5.5, 6.8, 7.2, 7.4, 6.8, 6.9, 6.4, 7.1, 7.5, 7.0, 6.3] 
+
+plt.plot(years, gdp_growth, marker='o', linestyle='-', color='b', label='GDP Growth') 
+plt.xlabel('Year') 
+plt.ylabel('GDP Growth Rate (%)') 
+plt.title('GDP Growth Rate from 2000 to 2020') 
+plt.legend() 
+plt.grid(True) 
+plt.show()</pre>
+        <button onclick="copyToClipboard('code11')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 6b: Box Plot Using Matplotlib</h3>
+        <pre id="code12">import matplotlib.pyplot as plt 
+import numpy as np 
+
+data = np.random.normal(loc=50, scale=10, size=100) 
+plt.boxplot(data, vert=False, patch_artist=True) 
+plt.title('Box Plot of Random Data') 
+plt.xlabel('Values') 
+plt.show()</pre>
+        <button onclick="copyToClipboard('code12')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 7: Customizing Seaborn Plots with Aesthetic Functions:</h3>
+        <pre id="code13">
+import numpy as np 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+def sinplot(n=10):  
+    x = np.linspace(0, 14, 100)  
+    for i in range(1, n + 1):  
+        plt.plot(x, np.sin(x + i * .5) * (n + 2 - i)) 
+
+sns.set() 
+sns.set_context("notebook", font_scale=1.5, rc={"lines.linewidth": 2.5}) 
+sinplot()  
+plt.title('Seaborn plots with Aesthetic functions')  
+plt.show()
+
+        </pre>
+        <button onclick="copyToClipboard('code13')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 8: Bokeh Line Graph with Annotations and Legends:</h3>
+        <pre id="code14">
+import numpy as np
+from bokeh.layouts import gridplot
+from bokeh.plotting import figure, show
+
+x = np.linspace(0, 4*np.pi, 100)
+y = np.sin(x)
+
+TOOLS = "pan,wheel_zoom,box_zoom,reset,save,box_select"
+
+p1 = figure(title="Example 1", tools=TOOLS, width=400, height=400)
+p1.circle(x, y, legend_label="sin(x)")
+p1.circle(x, 2*y, legend_label="2*sin(x)", color="orange")
+p1.circle(x, 3*y, legend_label="3*sin(x)", color="green")
+
+p1.legend.title = "Functions"
+p1.legend.location = "top_left"
+
+show(p1)
+
+        </pre>
+        <button onclick="copyToClipboard('code14')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 9: Write a Python program to draw 3D Plots using Plotly Libraries</h3>
+        <pre id="code15">
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+x, y = np.meshgrid(x, y)
+z = np.sin(np.sqrt(x**2 + y**2))
+
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+
+fig.update_layout(
+    scene=dict(
+        xaxis_title='X Axis',
+        yaxis_title='Y Axis',
+        zaxis_title='Z Axis'
+    ),
+    margin=dict(l=0, r=0, b=0, t=40),
+    title='3D Surface Plot of sin(sqrt(x^2 + y^2))'
+)
+
+fig.show()
+
+        </pre>
+        <button onclick="copyToClipboard('code15')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 10a: Write a Python program to draw Time Series using Plotly Libraries. </h3>
+        <pre id="code16">
+import pandas as pd 
+import plotly.express as px 
+dollar_conv = pd.read_csv('CUR_DLR_INR.csv') 
+fig = px.line(dollar_conv, x='DATE', y='RATE', title='Dollar vs Rupee') 
+fig.show()
+
+        </pre>
+        <button onclick="copyToClipboard('code16')">Copy Code</button>
+    </div>
+
+    <div>
+        <h3>Python Program 10b: Write a Python program for creating Maps using Plotly Libraries.</h3>
+        <pre id="code17">
 import plotly.express as px
 import pandas as pd
 
@@ -14,5 +347,22 @@ fig = px.choropleth(
 
 fig.show()
 
-        
+        </pre>
+        <button onclick="copyToClipboard('code17')">Copy Code</button>
+    </div>
 
+    <script>
+        function copyToClipboard(id) {
+            const codeBlock = document.getElementById(id);
+            const range = document.createRange();
+            range.selectNode(codeBlock);
+            window.getSelection().removeAllRanges();  // Clear previous selections
+            window.getSelection().addRange(range);  // Select the text inside the code block
+            document.execCommand('copy');  // Execute the copy command
+            window.getSelection().removeAllRanges();  // Clear the selection after copying
+            alert("Code copied to clipboard!");
+        }
+    </script>
+
+</body>
+</html>
